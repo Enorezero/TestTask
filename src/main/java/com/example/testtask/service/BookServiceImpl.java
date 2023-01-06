@@ -49,19 +49,19 @@ public class BookServiceImpl implements BookService {
                         if (ref != null) {
                             String link = labirintURL + ref.attr("href");
                             Document LinkedDoc = Jsoup.connect(link).userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6").timeout(20000).get();
-                            Element ISBN = LinkedDoc.select(".isbn").first();
+                            Element ISBN = linkedDoc.select(".isbn").first();
                             if (ISBN != null) {
                                 book.setISBN(ISBN.text());
                             }
-                            Element authors = LinkedDoc.select(".authors").first();
+                            Element authors = linkedDoc.select(".authors").first();
                             if (authors != null) {
                                 book.setAuthors(authors.text());
                             }
-                            Element publisher = LinkedDoc.select(".publisher").first();
+                            Element publisher = linkedDoc.select(".publisher").first();
                             if (publisher != null) {
                                 book.setPublishers(publisher.text());
                             }
-                            Element description = LinkedDoc.select("div#product-about").first();
+                            Element description = linkedDoc.select("div#product-about").first();
                             if (description != null) {
                                 book.setDescription(description.text().substring(0, 254));
                             }
