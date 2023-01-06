@@ -29,7 +29,7 @@ public class BookServiceImpl implements BookService {
         int quantity;
         int cnt = 0;
         try {
-            Document sourceDoc = Jsoup.connect(sourceURL).get();// не забыть добавить maxbody, timeout.
+            Document sourceDoc = Jsoup.connect(sourceURL).maxBodySize(0).timeout(100000).get();
             Elements elements = sourceDoc.select(".title");
             try {
                 quantity = Math.min(Integer.parseInt(amount),elements.size());
